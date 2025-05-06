@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Базовая разметка HTML</title>
+  <style>
+  </style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="banner">
+        <div class="slider" style="--quantity: 4">
+            <a href="127.0.0.1" class="item" style="--position: 1"><img src="/images/1.png" alt="">
+                <div class="card-description">
+                    <h3>Название карточки 1</h3>
+                    <p>Описание этой карточки. Может содержать дополнительную информацию.</p>
+                </div>
+            </a>
+            <a href="127.0.0.1" class="item" style="--position: 2"><img src="/images/2.png" alt="">
+                <div class="card-description">
+                    <h3>Название карточки 2</h3>
+                    <p>Описание этой карточки. Может содержать дополнительную информацию.</p>
+                </div>
+            </a>
+            <a href="127.0.0.1" class="item" style="--position: 3"><img src="/images/3.png" alt="">
+                <div class="card-description">
+                    <h3>Название карточки 3</h3>
+                    <p>Описание этой карточки. Может содержать дополнительную информацию.</p>
+                </div>
+            </a>
+            <a href="127.0.0.1" class="item" style="--position: 4"><img src="/images/4.png" alt="">
+                <div class="card-description">
+                    <h3>Название карточки 4</h3>
+                    <p>Описание этой карточки. Может содержать дополнительную информацию.</p>
+                </div>
+            </a>
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1 data-content="CyberCTF.Space2">
+                CyberCTF.Space2
+            </h1>
+            <div class="model"></div>
+        </div>
+    </div>
+
+    <audio id="myAudio" src="./aud.wav"></audio>
+
+  <script>
+    const audio = document.getElementById("myAudio");
+    let hasInteracted = false;
+
+    document.addEventListener('click', () => {
+      if (!hasInteracted) {
+        audio.play().catch(error => {
+          console.error("Ошибка воспроизведения:", error);
+        });
+        hasInteracted = true;
+        document.removeEventListener('click', arguments.callee);
+      }
+    });
+  </script>
+
+</body>
+</html>e 

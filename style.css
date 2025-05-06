@@ -1,0 +1,161 @@
+@import url(https://fonts.googleapis.com/css2?family=Oxanium:wght@200;300;400;500;600;700&display=swap);
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #050505, #100020, #000530); /* Более темный киберпанк градиент */
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+.banner{
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.banner .slider {
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 20%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 15s linear infinite;
+    z-index: 2;
+}
+
+.banner .slider:hover {
+    animation-play-state: paused;
+}
+
+
+@keyframes autoRun{
+    from{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }to{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+
+.banner .slider .item{
+    position: absolute;
+    inset:  0 0 0 0;
+    transform:
+        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity))* 1deg )) 
+        translateZ(350px);
+}
+
+.banner .slider .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Первоначальное свечение */
+    transition: box-shadow 0.7s ease-in-out;
+}
+
+.banner .slider .item:hover {
+    transform: rotateY(calc( (var(--position) - 1) * (360 / var(--quantity))* 1deg ))
+    translateZ(320px);
+}
+
+.banner .slider .item:hover img {
+    animation: neonGlow 3s infinite alternate; /* Анимация свечения */
+}
+
+@keyframes neonGlow {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+    25% {
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(187, 0, 255, 0.9);
+    }
+    75% {
+        box-shadow: 0 0 20px rgba(0, 255, 191, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+}
+
+.banner .content{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1400px, 100vw);
+    height: max-content;
+    padding-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+
+.banner .content h1{
+    font-family: 'Oxanium';
+    font-size: 10em;
+    line-height: 3em;
+    /* color: #25283B; */
+    color: #FF00FF    ;
+    position: relative;
+}
+
+.banner .content h1::after{
+    position: absolute;
+    inset: 0 0 0 0;
+    content: attr(data-content);
+    z-index: 2;
+    -webkit-text-stroke: 2px #d2d2d2;
+    color: transparent;
+}
+
+.banner .content .model{
+    background-image: url(images/bg.png);
+    width: 100%;
+    height: 110vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-size: auto 130%;
+    opacity: 60%;
+    background-repeat: no-repeat;
+    background-position: top center;
+    z-index: 1;
+}
+
+.card-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 0 0 15px 15px;
+    box-sizing: border-box; /* Важно, чтобы padding не увеличивал размеры */
+}
+
+.item:hover .card-description {
+    opacity: 1;
+    visibility: visible;
+}
+
+.card-description h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.card-description p {
+    font-size: 0.9em;
+}
