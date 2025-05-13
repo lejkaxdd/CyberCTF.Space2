@@ -23,7 +23,7 @@ body {
     left: calc(50% - 100px);
     transform-style: preserve-3d;
     transform: perspective(1000px);
-    animation: autoRun 9s linear infinite;
+    animation: autoRun 8s linear infinite;
     z-index: 2;
 }
 
