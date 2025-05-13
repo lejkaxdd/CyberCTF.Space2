@@ -8,31 +8,31 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="index.js"></script>
+    <!-- <script src="index.js"></script> -->
 
     <div class="banner">
         <div class="slider" style="--quantity: 4">
-            <div href="127.0.0.1" class="item" style="--position: 1"><img src="/images/1.png" alt="" id="1">
+            <div class="item" style="--position: 1" id="1"><img src="/images/1.png" alt="">
                 <div class="card-description">
-                    <h3>Название карточки 1</h3>
-                    <p>Описание этой карточки. Может содержать дополнительную информацию.</p>
+                    <h3>[Cropper]</h3>
+                    <p>Сервис предназначен для отслеживания мест посадки космических кораблей на карте мира.</p>
                 </div>
             </div>
-            <div href="127.0.0.1" class="item" style="--position: 2"><img src="/images/2.png" alt="" id="2">
+            <div class="item" style="--position: 2" id="2"><img src="/images/2.png" alt="">
                 <div class="card-description">
-                    <h3>Название карточки 2</h3>
-                    <p>Описание этой карточки. Может содержать дополнительную информацию.</p>
+                    <h3>[MD]</h3>
+                    <p>Сервис предназначен для покупки/продажи образцов Марсианского грунта </p>
                 </div>
             </div>
-            <div href="127.0.0.1" class="item" style="--position: 3"><img src="/images/3.png" alt="" id="3">
+            <div class="item" style="--position: 3" id="3"><img src="/images/3.png" alt="" >
                 <div class="card-description">
-                    <h3>Название карточки 3</h3>
-                    <p>Описание этой карточки. Может содержать дополнительную информацию.</p>
+                    <h3>[Rover]</h3>
+                    <p>Сервис предназначен для получения марсианских пейзажей</p>
                 </div>
             </div>
-            <div href="127.0.0.1" class="item" style="--position: 4"><img src="/images/4.png" alt="" id="4">
+            <div class="item" style="--position: 4"  id="4"><img src="/images/4.png" alt="">
                 <div class="card-description">
-                    <h3>Название карточки 4</h3>
+                    <h3>[MarsHub]</h3>
                     <p>Описание этой карточки. Может содержать дополнительную информацию.</p>
                 </div>
             </div>
@@ -46,22 +46,44 @@
         </div>
     </div>
 
+
     <audio id="myAudio" src="./aud.wav"></audio>
 
-  <script>
-    const audio = document.getElementById("myAudio");
-    let hasInteracted = false;
+   <script>
+        const audio = document.getElementById("myAudio");
+        let hasPlayed = false;
 
-    document.addEventListener('click', () => {
-      if (!hasInteracted) {
-        audio.play().catch(error => {
-          console.error("Ошибка воспроизведения:", error);
+        document.addEventListener('mousemove', () => {
+            if (!hasPlayed) {
+                audio.play().catch(error => {
+                    console.error("Ошибка воспроизведения:", error);
+                    console.log("Для воспроизведения звука необходимо взаимодействие пользователя (например, клик).");
+                });
+                hasPlayed = true;
+            }
         });
-        hasInteracted = true;
-        document.removeEventListener('click', arguments.callee);
-      }
-    });
-  </script>
+
+        let ports = ['4000', '5000', '10000', '9000'];
+        let targetURL = new URL(window.location.href);
+        let divs = document.querySelectorAll('.item');
+
+        divs.forEach((div, index) => {
+            div.addEventListener('click', () => {
+                if (ports[index]) {
+                    targetURL.port = ports[index];
+                    window.location.href = targetURL.href;
+
+                    // Optional: User feedback
+                    div.style.backgroundColor = 'lightblue';
+                    setTimeout(() => {
+                        div.style.backgroundColor = '';
+                    }, 200);
+                } else {
+                    console.error(`No port defined for element with ID: ${div.id}`);
+                }
+            });
+        });
+    </script>
 
 </body>
-</html>e 
+</html>
