@@ -100,12 +100,22 @@ body {
 }
 
 .banner .content h1{
-    font-family: 'Oxanium';
-    font-size: 10em;
+    font-family: 'elnath';
+    font-size: 9.7em;
+    letter-spacing: -5px;
     line-height: 3em;
     /* color: #25283B; */
-    color: #FF00FF    ;
+    color: #00DC00;
     position: relative;
+}
+
+.banner .content .hashtag-container {
+    font-family: "elnath";
+    font-size: 1.5em; /* Можно настроить размер шрифта */
+    color: #ffffff; /* Цвет текста хештега */
+    text-align: right; /* Выравнивание по правому краю */
+    /* margin-top: 10px; Отступ сверху от заголовка */
+    opacity: 0.7; /* Небольшая прозрачность для визуального отделения */
 }
 
 .banner .content h1::after{
@@ -152,10 +162,16 @@ body {
 }
 
 .card-description h3 {
+    font-family: "elnath";
     font-size: 1.2em;
     margin-bottom: 5px;
 }
 
 .card-description p {
     font-size: 0.9em;
+}
+
+@font-face {
+  font-family: "elnath";
+  src: url("./ELNATH.ttf");
 }
